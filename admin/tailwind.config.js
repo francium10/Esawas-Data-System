@@ -8,16 +8,19 @@ export default {
       lg: "976px",
       xl: "1440px",
     },
-    colors: {  
-      white: '#FFFFFF',    
+    colors: {
       blue: {
         500: "#0085C7",
-        400:"#00A3D9",
-        300:"#89B8DC", },   
-      green: {  
-         300: "#9BD3AE",
-         400: "#4FA392",},
+        400: "#00A3D9",
+        300: "#89B8DC",
       },
+      green: {
+        300: "#9BD3AE",
+        400: "#4FA392",
+      },
+      white: "#fff",
+      black: "000",
+    },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
       serif: ["Merriweather", "serif"],

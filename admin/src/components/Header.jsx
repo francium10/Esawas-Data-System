@@ -1,33 +1,51 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { IoPersonSharp } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useState } from "react";
+import { BASE_URL } from "../constants";
 import logo from '../assets/logo.jpeg'
 
 const Header = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const location = useLocation();
 
   const handleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  return (
-    <header className="bg-white ">
-      <nav className="flex px-0 justify-around md:justify-between md:px-6 py-2">
-        
-        <div>
-  <Link to="/">
-    <img
-      src={logo}
-      alt="Esawas Illustration"
-      className="w-32 md:w-48 lg:w-64 mx-auto shadow-lg rounded-lg mt-2 mb-2"
-    />
-  </Link>
-</div>
+  const navigate = useNavigate();
+  const logoutUser = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/users/logout`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
+      navigate("/");
+      localStorage.removeItem("userInfo");
+      setDropdownOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-      
+  return (
+    <header className="bg-blue-500 ">
+      <nav className="flex px-0 justify-around md:justify-between md:px-6 py-2">
+        <div>
+        <Link to="/">
+         <img
+             src={logo}
+               alt="Esawas Illustration"
+                 className="w-32 md:w-48 lg:w-64 mx-auto shadow-lg rounded-lg mt-2 mb-2"
+          />
+          </Link>
+        </div>
         <div className="flex items-center ">
           <div>
             {userInfo ? (
@@ -55,14 +73,26 @@ const Header = () => {
                   <Link className="cursor-pointer" to="/profile">
                     Profile
                   </Link>
-                  <button className="cursor-pointer">Logout</button>
+                  <button
+                    className="cursor-pointer"
+                    onClick={() => {
+                      logoutUser();
+                    }}
+                  >
+                    Logout
+                  </button>
                 </div>
               </div>
             ) : (
-              <div className="flex space-x-2 items-center justify-center bg-blue-500 py-2 px-3 rounded cursor-pointer">
-                <IoPersonSharp />
-                <Link to="/login">Login</Link>
-              </div>
+              location.pathname === "/login" ||
+              (location.pathname === "/register" ? (
+                ""
+              ) : (
+                <div className="flex space-x-2 items-center justify-center bg-blue-300 py-2 px-3 rounded cursor-pointer">
+                  <IoPersonSharp />
+                  <Link to="/login">Login</Link>
+                </div>
+              ))
             )}
           </div>
           <div>{}</div>

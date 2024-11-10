@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DynamicTable from "../components/DynamicTable";
+// import DynamicTable from "../components/DynamicTable";
 
 const Dashboard = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -11,12 +11,12 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="dashboard-container p-4 md:p-8 bg-blue-300 min-h-screen">
+    <div className="dashboard-container p-4 md:p-8 bg-green-400 min-h-screen">
       {/* Welcome Heading */}
       <h2 className="text-2xl font-semibold text-blue-500 mb-6">
         Welcome, {userInfo.name}!
       </h2>
-      
+
       {/* User Information Table */}
       <div className="user-info bg-white shadow-md rounded-lg p-4 mb-6">
         <h3 className="text-lg font-semibold text-blue-400 mb-3">
@@ -44,14 +44,14 @@ const Dashboard = () => {
       <div className="survey-cards grid gap-4 md:grid-cols-2">
         {/* Card 1 with Tooltip */}
         <div
-          className="relative card bg-green-300 shadow-lg rounded-lg p-4 text-center hover:bg-blue-300 transition duration-200 ease-in-out"
+          className="relative card bg-white shadow-lg rounded-lg p-4 text-center hover:bg-blue-300 transition duration-200 ease-in-out"
           onMouseEnter={() => setShowTooltip({ ...showTooltip, card1: true })}
           onMouseLeave={() => setShowTooltip({ ...showTooltip, card1: false })}
         >
           <h4 className="text-lg font-semibold text-blue-400 mb-2">
             Assessment 1
           </h4>
-          <p className="text-green mb-4">
+          <p className="text-green-400 mb-4">
             Start the first Assessment to share insights.
           </p>
           <a
@@ -72,15 +72,15 @@ const Dashboard = () => {
 
         {/* Card 2 with Tooltip */}
         <div
-          className="relative card bg-green-300 shadow-lg rounded-lg p-4 text-center hover:bg-blue-300 transition duration-200 ease-in-out"
+          className="relative card bg-white shadow-lg rounded-lg p-4 text-center hover:bg-blue-300 transition duration-200 ease-in-out"
           onMouseEnter={() => setShowTooltip({ ...showTooltip, card2: true })}
           onMouseLeave={() => setShowTooltip({ ...showTooltip, card2: false })}
         >
           <h4 className="text-lg font-semibold text-blue-400 mb-2">
             Assessment 2
           </h4>
-          <p className="text-green- mb-4">
-            Complete the second Assessment  for more engagement.
+          <p className="text-green-400 mb-4">
+            Complete the second assessment for more engagement.
           </p>
           <a
             href="https://esawas-javascript-jrtzmvgmk-alinafes-projects.vercel.app"
@@ -98,10 +98,9 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      <DynamicTable />
+      {/* <DynamicTable /> */}
     </div>
   );
 };
 
 export default Dashboard;
-

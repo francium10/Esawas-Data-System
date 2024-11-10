@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants";
+import logo from "../assets/logo.png";
 
 const RegisterPage = () => {
   const [registerData, setRegisterData] = useState({
@@ -43,10 +44,11 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-8 bg-white">
-      <div className="bg-white p-8 shadow-lg w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-blue-300">
+      <div className="bg-white p-8 py-4 shadow-md w-full max-w-md">
+        <img src={logo} alt="EWASAS" className="w-24 h-auto mx-auto" />
         <div className="flex justify-center mb-6">
-          <FaUserCircle className="text-6xl text-blue-500" />
+          <FaUserCircle className="text-4xl text-blue-500" />
         </div>
         <h2 className="text-2xl font-semibold text-center text-blue-500 mb-4">
           Sign Up
