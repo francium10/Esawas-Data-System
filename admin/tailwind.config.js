@@ -8,7 +8,8 @@ export default {
       lg: "976px",
       xl: "1440px",
     },
-    colors: {      
+    colors: {  
+      white: '#FFFFFF',    
       blue: {
         500: "#0085C7",
         400:"#00A3D9",
