@@ -3,7 +3,7 @@ import { IoPersonSharp } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useState } from "react";
 import { BASE_URL } from "../constants";
-import logo from '../assets/logo.jpeg'
+import logo from "../assets/logo.jpeg";
 
 const Header = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -38,12 +38,12 @@ const Header = () => {
     <header className="bg-blue-500 ">
       <nav className="flex px-0 justify-around md:justify-between md:px-6 py-2">
         <div>
-        <Link to="/">
-         <img
-             src={logo}
-               alt="Esawas Illustration"
-                 className="w-32 md:w-48 lg:w-64 mx-auto shadow-lg rounded-lg mt-2 mb-2"
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Esawas Illustration"
+              className="w-32 md:w-48 lg:w-64 mx-auto shadow-lg rounded-lg mt-2 mb-2"
+            />
           </Link>
         </div>
         <div className="flex items-center ">
@@ -58,6 +58,7 @@ const Header = () => {
                     } cursor-pointer transition duration-300`}
                   >
                     <IoMdArrowDropdown
+                      className="text-white"
                       size={24}
                       onClick={() => {
                         handleDropdown();
@@ -68,11 +69,17 @@ const Header = () => {
                 <div
                   className={`${
                     dropdownOpen ? "flex" : "hidden"
-                  } translate-x-8 flex-col p-2 px-4 top-[44px] space-y-2 transition duration-300 absolute rounded-b bg-blue-400`}
+                  } translate-x-8 flex-col p-2 px-6 right-12 top-[55px] space-y-2 transition
+                   duration-300 absolute rounded-b bg-white
+                   `}
+                  onMouseLeave={() => {
+                    setDropdownOpen(false);
+                  }}
                 >
                   <Link className="cursor-pointer" to="/profile">
                     Profile
                   </Link>
+
                   <button
                     className="cursor-pointer"
                     onClick={() => {
