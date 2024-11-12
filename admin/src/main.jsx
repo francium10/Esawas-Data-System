@@ -13,7 +13,7 @@ import LoginPage from "./Pages/LoginPage.jsx";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import Dashboard from "./Pages/DashboardPage.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
-import ProfilePage from "./components/ProfilePage.jsx";
+import ProfilePage from "./Pages/ProfilePage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
