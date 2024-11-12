@@ -29,6 +29,8 @@ const RegisterPage = () => {
           "Content-Type": "application/json",
         },
         method: "POST",
+        mode: "cors",
+        credentials: "include",
         body: JSON.stringify(registerData),
       });
       const user = await response.json();
