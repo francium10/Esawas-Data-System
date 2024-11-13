@@ -83,7 +83,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //@route PUT /api/users/profile
 //@access Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-  console.log("SECRET:", process.env.JWT_SECRET);
   const user = await User.findById(req.user._id);
   if (user) {
     user.name = req.body.name || user.name;
@@ -113,6 +112,14 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({});
   res.json(users);
+});
+
+//@desc Get user by ID
+//@route GET /api/users/:id
+//@access Private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+  res.json(user);
 });
 
 //@desc Delete user
@@ -165,6 +172,7 @@ export {
   getUserProfile,
   updateUserProfile,
   getUsers,
+  getUserById,
   deleteUser,
   updateUser,
 };
