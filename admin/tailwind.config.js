@@ -18,8 +18,13 @@ export default {
         300: "#9BD3AE",
         400: "#4FA392",
       },
+      
       white: "#fff",
       black: "000",
+      "traffic-green": "#4CAF50",  // Green for high effectiveness
+      "traffic-yellow": "#FFEB3B", // Yellow for medium effectiveness
+      "traffic-red": "#F44336",    // Red for low effectiveness
+      "traffic-gray": "#E0E0E0",   // Gray for undefined/neutral
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
