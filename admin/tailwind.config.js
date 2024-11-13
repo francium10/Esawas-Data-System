@@ -17,14 +17,22 @@ export default {
       green: {
         300: "#9BD3AE",
         400: "#4FA392",
+        500: "#6EC207",
       },
-      
+
+      gray: {
+        500: "#A6AEBF",
+        400: "#C5D3E8",
+        300: "#C4DAD2",
+      },
+
       white: "#fff",
       black: "000",
-      "traffic-green": "#4CAF50",  // Green for high effectiveness
+      red: "#FA4032",
+      "traffic-green": "#4CAF50", // Green for high effectiveness
       "traffic-yellow": "#FFEB3B", // Yellow for medium effectiveness
-      "traffic-red": "#F44336",    // Red for low effectiveness
-      "traffic-gray": "#E0E0E0",   // Gray for undefined/neutral
+      "traffic-red": "#F44336", // Red for low effectiveness
+      "traffic-gray": "#E0E0E0", // Gray for undefined/neutral
     },
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
