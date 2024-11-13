@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { BASE_URL } from "../../constants";
 import { toast } from "react-toastify";
 import { FaTrash, FaEdit, FaTimes, FaCheck } from "react-icons/fa";
@@ -20,11 +21,13 @@ const UserListPage = () => {
 
         const data = await response.json();
 
-        if (response.status >= 200 && response.status < 300) {
+        if (response.ok) {
           setUsers(data);
+        } else {
+          throw new Error(data.message || "Failed to fetch users");
         }
       } catch (err) {
-        toast.error(err.message || "An error occurred while fetching users");
+        toast.error(err.message);
       } finally {
         setIsLoading(false);
       }
@@ -33,8 +36,42 @@ const UserListPage = () => {
     fetchUsers();
   }, []);
 
-  const deleteHandler = () => {
-    console.log("Delete");
+  const deleteHandler = async (id) => {
+    try {
+      if (
+        window.confirm(
+          "Are you sure you want to permanently delete this user? This action cannot be undone."
+        )
+      ) {
+        const response = await fetch(`${BASE_URL}/users/${id}`, {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
+
+        let data;
+        try {
+          // Attempt to parse the response as JSON
+          data = await response.json();
+        } catch (parseError) {
+          // If parsing fails, handle as a non-JSON response
+          throw new Error("Cannot delete Admin User");
+        }
+
+        if (response.ok) {
+          toast.success(data.message);
+          setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+        } else {
+          throw new Error(data.message || "Failed to delete user");
+        }
+      }
+    } catch (err) {
+      // Display the error message or fallback
+      toast.error(err.message || "An unexpected error occurred");
+    }
   };
 
   if (isLoading) {
@@ -60,7 +97,7 @@ const UserListPage = () => {
         <tbody>
           {users.map((user) => (
             <tr key={user._id} className="hover:bg-gray-50">
-              <td className="border border-gray-300  px-4 py-2">{user.name}</td>
+              <td className="border border-gray-300 px-4 py-2">{user.name}</td>
               <td className="border border-gray-300 px-4 py-2">
                 <a
                   href={`mailto:${user.email}`}
@@ -71,18 +108,18 @@ const UserListPage = () => {
               </td>
               <td className="border border-gray-300 px-2 py-2 text-center">
                 {user.isAdmin ? (
-                  <FaCheck className="text-green-500"></FaCheck> // Check mark
+                  <FaCheck className="text-green-500" />
                 ) : (
-                  <FaTimes className="text-red-500"></FaTimes> // Cross mark
+                  <FaTimes className="text-red-500" />
                 )}
               </td>
               <td className="flex items-center justify-center space-x-4 border border-gray-300 py-2 text-center">
-                <a
-                  href={`/admin/user/${user._id}/edit`}
+                <Link
+                  to={`/admin/user/${user._id}/edit`}
                   className="text-blue-500 hover:underline mr-2"
                 >
                   <FaEdit className="hover:scale-125 transition duration-300" />
-                </a>
+                </Link>
                 <button onClick={() => deleteHandler(user._id)}>
                   <FaTrash className="text-red-500 hover:scale-125 transition duration-300" />
                 </button>
