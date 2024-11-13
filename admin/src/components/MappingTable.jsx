@@ -1,33 +1,46 @@
-import React, { useState } from 'react';
-import { Tooltip } from 'react-tooltip';
-import { useTable } from 'react-table';
-import { FaFilter } from 'react-icons/fa';
+import React, { useState } from "react";
+import { Tooltip } from "react-tooltip";
+import { useTable } from "react-table";
+import { FaFilter } from "react-icons/fa";
 
 // Sample data (for demonstration)
 const data = [
-  { category: "Urban Water Supply (Sector Monitoring)", percentages: [80, 60, 75, 90, 50, 70] },
-  { category: "Rural Water Supply (Sector Monitoring)", percentages: [65, 55, 80, 60, 40, 75] },
-  { category: "Urban Sanitation (Sector Monitoring)", percentages: [90, 70, 85, 80, 65, 90] },
-  { category: "Rural Sanitation (Sector Monitoring)", percentages: [50, 40, 60, 45, 70, 55] },
+  {
+    category: "Urban Water Supply (Sector Monitoring)",
+    percentages: [80, 60, 75, 90, 50, 70],
+  },
+  {
+    category: "Rural Water Supply (Sector Monitoring)",
+    percentages: [65, 55, 80, 60, 40, 75],
+  },
+  {
+    category: "Urban Sanitation (Sector Monitoring)",
+    percentages: [90, 70, 85, 80, 65, 90],
+  },
+  {
+    category: "Rural Sanitation (Sector Monitoring)",
+    percentages: [50, 40, 60, 45, 70, 55],
+  },
   { category: "Finance Regulation", percentages: [75, 85, 65, 80, 50, 60] },
   { category: "Utility Operations", percentages: [80, 55, 75, 90, 85, 95] },
   { category: "Finance", percentages: [67, 95, 85, 90, 81, 75] },
-  
 ];
 
 // Helper function to set color based on percentage
 const getColor = (value) => {
-  if (value >= 75) return "bg-green-500";
-  if (value >= 50) return "bg-yellow-500";
+  if (value >= 75) return "bg-traffic-green";
+  if (value >= 50) return "bg-traffic-yellow";
   return "bg-red-500";
 };
 
-const MappingDashboard = () => {
+const MappingTable = () => {
   const [selectedData, setSelectedData] = useState(null);
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-center mb-4">Organizational Level Mapping Dashboard – NWASCO</h2>
+      <h2 className="text-2xl font-bold text-center mb-4">
+        Organizational Level Mapping Dashboard – NWASCO
+      </h2>
 
       {/* Filter Section */}
       <div className="flex justify-between mb-4">
@@ -67,8 +80,12 @@ const MappingDashboard = () => {
                 {row.percentages.map((percentage, colIndex) => (
                   <td
                     key={colIndex}
-                    className={`p-3 text-center cursor-pointer ${getColor(percentage)}`}
-                    onClick={() => setSelectedData({ category: row.category, percentage })}
+                    className={`p-3 text-center cursor-pointer ${getColor(
+                      percentage
+                    )}`}
+                    onClick={() =>
+                      setSelectedData({ category: row.category, percentage })
+                    }
                   >
                     {percentage}%
                   </td>
@@ -116,4 +133,4 @@ const MappingDashboard = () => {
   );
 };
 
-export default MappingDashboard;
+export default MappingTable;

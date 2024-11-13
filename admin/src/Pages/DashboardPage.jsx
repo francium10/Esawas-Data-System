@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import MappingTable from "../components/MappingTable";
 // import DynamicTable from "../components/DynamicTable";
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const organization = "Esawas";
   const country = "Zambia";
@@ -98,9 +99,9 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      {/* <DynamicTable /> */}
+      {userInfo && userInfo.isAdmin && <MappingTable />}
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardPage;
