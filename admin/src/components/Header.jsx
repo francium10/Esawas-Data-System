@@ -151,6 +151,12 @@ const Header = () => {
                   >
                     Users
                   </Link>
+                  <Link
+                    className="cursor-pointer hover:text-blue-300"
+                    to="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
                 </div>
               </>
             )}

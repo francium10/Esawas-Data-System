@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants.js";
 import { toast } from "react-toastify";
 const ProfilePage = () => {
@@ -33,6 +34,7 @@ const ProfilePage = () => {
     }));
   };
 
+  const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
     const { password, confirmPassword } = userDetails;
@@ -59,6 +61,8 @@ const ProfilePage = () => {
         // Optionally update local storage with the new user info
         localStorage.setItem("userInfo", JSON.stringify(updatedUser));
         toast.success("Profile updated successfully");
+
+        navigate("/");
 
         // Optionally, refresh the page or update local state
       } catch (err) {

@@ -23,8 +23,6 @@ const EditUserPage = () => {
         });
         const data = await response.json();
 
-        console.log(data);
-
         if (response.ok) {
           setName(data.name);
           setEmail(data.email);
