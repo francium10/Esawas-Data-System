@@ -30,7 +30,7 @@ const data = [
 const getColor = (value) => {
   if (value >= 75) return "bg-traffic-green";
   if (value >= 50) return "bg-traffic-yellow";
-  return "bg-red-500";
+  return "bg-traffic-red";
 };
 
 const MappingTable = () => {
